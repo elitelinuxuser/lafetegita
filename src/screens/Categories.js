@@ -1,25 +1,68 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { StyleSheet } from "react-native";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Left,
+  Right,
+  Icon
+} from "native-base";
+
+// const styles = StyleSheet.create({
+//   ListItem: {
+//     color: "blue"
+//   }
+// });
 
 export default class Categories extends Component {
-  static navigationOptions = {
-    headerTitleStyle: {
-      flex: 1,
-      alignSelf: "center",
-      textAlign: "center",
-      color: "white"
-    },
-    title: "Home",
-    headerLeft: <Icon size={32} color="white" name="home" />,
-    headerRight: <View />
+  constructor() {
+    super();
+    this.state = {
+      listArray: [
+        { title: "Prizes", navigateTo: "Home" },
+        { title: "Events", navigateTo: "Events" },
+        { title: "Schedule", navigateTo: "Categories" },
+        { title: "Registration", navigateTo: "Categories" },
+        { title: "Donate", navigateTo: "Categories" }
+      ],
+      selected: "None"
+    };
+  }
+
+  handlePress = (title, navigateTo) => {
+    this.setState({
+      selected: title
+    });
+    return this.props.navigation.navigate(navigateTo);
   };
 
   render() {
     return (
-      <View>
-        <Text>Categories</Text>
-      </View>
+      <Container>
+        <Content>
+          <List>
+            {this.state.listArray.map(({ title, navigateTo }, index) => (
+              <ListItem
+                noIndent
+                key={index}
+                button
+                selected={this.state.selected === title}
+                onPress={() => this.handlePress(title, navigateTo)}
+              >
+                <Left>
+                  <Text>{title}</Text>
+                </Left>
+                <Right>
+                  <Icon name="arrow-forward" />
+                </Right>
+              </ListItem>
+            ))}
+          </List>
+        </Content>
+      </Container>
     );
   }
 }

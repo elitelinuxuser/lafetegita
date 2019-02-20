@@ -14,7 +14,7 @@ export const fetchEvents = eventTitle => async dispatch => {
     await querySnapshot.forEach(doc => {
       console.log("Fetch Executed");
       console.log(doc.data());
-      data.push({ docid: doc.id, docdata: doc.data() });
+      data = data.concat([...data], [{ docid: doc.id, docdata: doc.data() }]);
     });
   });
 

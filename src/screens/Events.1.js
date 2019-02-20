@@ -22,7 +22,7 @@ export default class Events extends Component {
       //   />
       // ),
       headerStyle: {
-        backgroundColor: navigation.getParam("headerColor", "#B71C1C")
+        backgroundColor: "#B71C1C"
       }
     };
   };

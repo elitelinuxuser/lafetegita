@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import * as actions from "./src/actions";
 import Home from "./src/screens/Home";
 
-import firebase from "react-native-firebase";
+// import firebase from "react-native-firebase";
 
 class App extends React.Component {
   constructor() {

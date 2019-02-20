@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase from "react-native-firebase";
 import { View, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+// import { ScrollView } from "react-native-gesture-handler";
 import Card from "../components/Card";
 import ImageCard from "../components/ImageCard";
 import { Container, Content, H1 } from "native-base";
