@@ -15,6 +15,9 @@ import EventCard from "../components/EventCard";
 import ExpandedEvent from "./ExpandedEvent";
 import MainList from "../components/MainList";
 import Reference from "./Reference";
+import Themes from "./Themes";
+import ContactUs from "./ContactUs";
+import JoinUs from "./JoinUs";
 
 export default class App extends Component {
   render() {
@@ -177,7 +180,10 @@ const AppStackNavigator = createStackNavigator(
     EventCard: EventCard,
     ExpandedEvent: ExpandedEvent,
     MainList: MainList,
-    Reference: Reference
+    Reference: Reference,
+    Themes: Themes,
+    ContactUs: ContactUs,
+    JoinUs: JoinUs
   },
   {
     defaultNavigationOptions: {
