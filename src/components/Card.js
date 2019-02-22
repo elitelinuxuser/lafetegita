@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
 import { Card, CardItem, Text, Body } from "native-base";
+import { material, human } from "react-native-typography";
 
 const styles = StyleSheet.create({
   textcenter: {
@@ -20,12 +21,12 @@ export default class CardHeaderFooterExample extends Component {
     return (
       <Card>
         <CardItem header>
-          <Text style={styles.textcenter}>{title}</Text>
+          <Text style={[styles.textcenter, material.title]}>{title}</Text>
         </CardItem>
         <CardItem>
           <Body>
             {body.map((text, index) => (
-              <Text style={{ marginBottom: 4 }} key={index}>
+              <Text style={[{ marginBottom: 4 }, human.body]} key={index}>
                 {"        "}
                 {text}
               </Text>

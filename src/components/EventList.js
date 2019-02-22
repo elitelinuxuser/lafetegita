@@ -5,27 +5,33 @@ import { ListItem } from "react-native-elements";
 const list = [
   {
     title: "Art",
-    icon: "color-lens"
+    icon: "color-lens",
+    firebaseCollection: "art"
   },
   {
     title: "Cultural",
-    icon: "business"
+    icon: "business",
+    firebaseCollection: "cultural"
   },
   {
     title: "Digital Arts",
-    icon: "brush"
+    icon: "brush",
+    firebaseCollection: "digitalarts"
   },
   {
     title: "Hackathon",
-    icon: "laptop"
+    icon: "laptop",
+    firebaseCollection: "hackathon"
   },
   {
     title: "Literary",
-    icon: "border-color"
+    icon: "border-color",
+    firebaseCollection: "literary"
   },
   {
     title: "Online Events",
-    icon: "web"
+    icon: "web",
+    firebaseCollection: "onlineevents"
   }
 ];
 
@@ -36,7 +42,7 @@ export default class EventList extends Component {
   render() {
     return (
       <View>
-        {list.map(({ title, icon }, i) => (
+        {list.map(({ title, icon, firebaseCollection }, i) => (
           <ListItem
             key={i}
             title={title}
@@ -45,7 +51,8 @@ export default class EventList extends Component {
             onPress={() =>
               this.props.navigation.navigate("DisplayEvents", {
                 headTitle: title,
-                headIcon: icon
+                headIcon: icon,
+                collectionName: firebaseCollection
               })
             }
           />

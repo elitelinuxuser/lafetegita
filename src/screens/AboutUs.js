@@ -4,7 +4,8 @@ import { View, StyleSheet } from "react-native";
 // import { ScrollView } from "react-native-gesture-handler";
 import Card from "../components/Card";
 import ImageCard from "../components/ImageCard";
-import { Container, Content, H1 } from "native-base";
+import { Container, Content, H1, Spinner, Seperator } from "native-base";
+import { human, material } from "react-native-typography";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,10 +29,13 @@ class AboutUs extends Component {
     this.state = {
       specificTitles: [],
       associates: [],
-      sponsors: []
+      sponsors: [],
+      isLoading: true,
+      associateLoading: true
     };
   }
-  componentDidMount() {
+
+  async componentDidMount() {
     console.log("About Us Mounted");
 
     //Firestore reference to the required document
@@ -50,8 +54,8 @@ class AboutUs extends Component {
     sponsors = dbRef.collection("sponsors");
 
     //Fetch the data from all the documents in specificTitles collection
-    specificTitles.get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
+    await specificTitles.get().then(async querySnapshot => {
+      await querySnapshot.forEach(doc => {
         if (doc.exists) {
           this.setState(prevState => ({
             specificTitles: [...prevState.specificTitles, doc.data()]
@@ -60,9 +64,14 @@ class AboutUs extends Component {
       });
     });
 
+    //Loading finished
+    this.setState({
+      isLoading: false
+    });
+
     //Fetch the data from all the documents in associates collection
-    associates.get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
+    await associates.get().then(async querySnapshot => {
+      await querySnapshot.forEach(doc => {
         if (doc.exists) {
           this.setState(prevState => ({
             associates: [...prevState.associates, doc.data()]
@@ -71,9 +80,13 @@ class AboutUs extends Component {
       });
     });
 
+    this.setState({
+      associateLoading: false
+    });
+
     //Fetch the data from all the documents in sponsors collection
-    sponsors.get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
+    await sponsors.get().then(async querySnapshot => {
+      await querySnapshot.forEach(doc => {
         if (doc.exists) {
           this.setState(prevState => ({
             sponsors: [...prevState.sponsors, doc.data()]
@@ -83,7 +96,9 @@ class AboutUs extends Component {
     });
   }
   render() {
-    return (
+    return this.state.isLoading ? (
+      <Spinner color="#E64A19" />
+    ) : (
       <View style={{ flex: 1 }}>
         <Container style={styles.container}>
           <Content>
@@ -91,10 +106,16 @@ class AboutUs extends Component {
               console.log("Mapping");
               return <Card key={index} data={data} />;
             })}
-            <H1 style={[styles.textcenter, styles.h1]}>Our Associates</H1>
-            {this.state.associates.map((associateData, index) => (
-              <ImageCard key={index} data={associateData} />
-            ))}
+            <H1 style={[styles.textcenter, styles.h1, human.largeTitle]}>
+              Our Associates
+            </H1>
+            {this.state.associateLoading ? (
+              <Spinner color="#E64A19" />
+            ) : (
+              this.state.associates.map((associateData, index) => (
+                <ImageCard key={index} data={associateData} />
+              ))
+            )}
           </Content>
         </Container>
       </View>

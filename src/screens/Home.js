@@ -11,6 +11,10 @@ import AboutUs from "./AboutUs";
 import Events from "./Events";
 import EventList from "../components/EventList";
 import DisplayEvents from "./DisplayEvents";
+import EventCard from "../components/EventCard";
+import ExpandedEvent from "./ExpandedEvent";
+import MainList from "../components/MainList";
+import Reference from "./Reference";
 
 export default class App extends Component {
   render() {
@@ -133,6 +137,12 @@ class Home extends Component {
               borderColor={this.state.activeTab.barColor}
             />
           )}
+          {this.state.activeTab.key === "reference" && (
+            <Reference
+              {...this.props}
+              borderColor={this.state.activeTab.barColor}
+            />
+          )}
           {this.state.activeTab.key === "about" && (
             // <Card barColor={this.state.activeTab.barColor} />
             <AboutUs />
@@ -163,7 +173,11 @@ const AppStackNavigator = createStackNavigator(
     Categories: Categories,
     Events: Events,
     EventList: EventList,
-    DisplayEvents: DisplayEvents
+    DisplayEvents: DisplayEvents,
+    EventCard: EventCard,
+    ExpandedEvent: ExpandedEvent,
+    MainList: MainList,
+    Reference: Reference
   },
   {
     defaultNavigationOptions: {

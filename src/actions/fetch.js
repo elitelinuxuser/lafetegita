@@ -13,14 +13,17 @@ export const fetchEvents = eventTitle => async dispatch => {
   await dbRef.get().then(async querySnapshot => {
     await querySnapshot.forEach(doc => {
       console.log("Fetch Executed");
-      console.log(doc.data());
-      data = data.concat([...data], [{ docid: doc.id, docdata: doc.data() }]);
+      // console.log(doc.data());
+      console.log(eventTitle);
+      // i = {}
+      // for
+      data = [...data, { docid: doc.id, docdata: doc.data() }];
     });
   });
 
   console.log("Awaited" + data);
   dispatch({
     type: FETCH_EVENTS,
-    payload: data
+    payload: { [eventTitle]: data }
   });
 };

@@ -26,15 +26,14 @@ class App extends React.Component {
     // const { user } = await firebase.auth().signInAnonymously();
     // console.warn('User -> ', user.toJSON());
     // await firebase.analytics().logEvent('foo', { bar: '123'});
-    // this.props.fetch();
-    await fetchEvents("art");
+    // // this.props.fetch();
+    // await fetchEvents("art");
+    // await fetchEvents("hackathon");
     console.log("App executed");
-    setTimeout(() => {
-      console.log(this.props.events);
-    }, 5000);
   }
 
   render() {
+    // console.log(this.props.events.data);
     return <Home />;
   }
 }

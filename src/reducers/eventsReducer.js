@@ -1,7 +1,6 @@
 import { FETCH_EVENTS } from "../actions/types";
 
 const initialState = {
-  eventName: "",
   data: []
 };
 
@@ -10,10 +9,8 @@ const eventsReducer = (state = initialState, action) => {
     case FETCH_EVENTS:
       return {
         ...state,
-        data: state.data.concat({
-          key: Math.random(),
-          value: action.payload
-        })
+        // data: state.data.concat(action.payload)
+        data: { ...state.data, ...action.payload }
       };
     default:
       return state;
