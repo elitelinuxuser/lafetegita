@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Linking } from "react-native";
 // import { StyleSheet } from "react-native";
 import {
   Container,
@@ -21,7 +22,41 @@ export default class MainList extends Component {
     this.setState({
       selected: title
     });
-    return this.props.navigation.navigate(navigateTo);
+    if (title === "Download") {
+      Linking.canOpenURL(
+        "https://drive.google.com/open?id=1qOMvxBpcZytYHvqgVpm21nsQ230P5FWj"
+      ).then(supported => {
+        if (supported) {
+          Linking.openURL(
+            "https://drive.google.com/open?id=1qOMvxBpcZytYHvqgVpm21nsQ230P5FWj"
+          );
+        } else {
+          console.log("Don't know how to open URI: ");
+        }
+      });
+    } else if (title === "Upload") {
+      Linking.canOpenURL("https://lafetegita.com/upload/").then(supported => {
+        if (supported) {
+          Linking.openURL("https://lafetegita.com/upload/");
+        } else {
+          console.log("Don't know how to open URI: ");
+        }
+      });
+    } else if (title === "Music Library") {
+      Linking.canOpenURL(
+        "https://drive.google.com/drive/folders/1syfAY3iW8fMQcSkv0D6mzGxp8MAk8Gbs"
+      ).then(supported => {
+        if (supported) {
+          Linking.openURL(
+            "https://drive.google.com/drive/folders/1syfAY3iW8fMQcSkv0D6mzGxp8MAk8Gbs"
+          );
+        } else {
+          console.log("Don't know how to open URI: ");
+        }
+      });
+    } else {
+      return this.props.navigation.navigate(navigateTo);
+    }
   };
   render() {
     return (

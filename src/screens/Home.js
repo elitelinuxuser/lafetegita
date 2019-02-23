@@ -18,6 +18,11 @@ import Reference from "./Reference";
 import Themes from "./Themes";
 import ContactUs from "./ContactUs";
 import JoinUs from "./JoinUs";
+import Register from "./Register";
+import Donate from "./Donate";
+import Schedule from "./Schedule";
+import Prizes from "./Prizes";
+import HomePage from "./HomePage";
 
 export default class App extends Component {
   render() {
@@ -134,6 +139,12 @@ class Home extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
+          {this.state.activeTab.key === "home" && (
+            <HomePage
+              {...this.props}
+              borderColor={this.state.activeTab.barColor}
+            />
+          )}
           {this.state.activeTab.key === "category" && (
             <Categories
               {...this.props}
@@ -183,7 +194,12 @@ const AppStackNavigator = createStackNavigator(
     Reference: Reference,
     Themes: Themes,
     ContactUs: ContactUs,
-    JoinUs: JoinUs
+    JoinUs: JoinUs,
+    Register: Register,
+    Donate: Donate,
+    Schedule: Schedule,
+    Prizes: Prizes,
+    AboutUs: AboutUs
   },
   {
     defaultNavigationOptions: {

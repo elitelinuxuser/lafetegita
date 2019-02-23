@@ -3,11 +3,11 @@ import MainList from "../components/MainList";
 
 const listData = {
   listArray: [
-    { title: "Music Library", navigateTo: "Home" },
+    { title: "Music Library", navigateTo: "Reference" },
     { title: "Themes", navigateTo: "Themes" },
     { title: "Join Us", navigateTo: "JoinUs" },
-    { title: "Upload", navigateTo: "Categories" },
-    { title: "Download", navigateTo: "Categories" },
+    { title: "Upload", navigateTo: "Reference" },
+    { title: "Download", navigateTo: "Reference" },
     { title: "Contact Us", navigateTo: "ContactUs" }
   ],
   selected: "None"

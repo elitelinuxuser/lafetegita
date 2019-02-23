@@ -8,11 +8,11 @@ import MainList from "../components/MainList";
 // });
 const listData = {
   listArray: [
-    { title: "Prizes", navigateTo: "Home" },
+    // { title: "Prizes", navigateTo: "Prizes" },
     { title: "Events", navigateTo: "Events" },
-    { title: "Schedule", navigateTo: "Categories" },
-    { title: "Registration", navigateTo: "Categories" },
-    { title: "Donate", navigateTo: "Categories" }
+    { title: "Schedule", navigateTo: "Schedule" },
+    { title: "Registration", navigateTo: "Register" },
+    { title: "Donate", navigateTo: "Donate" }
   ],
   selected: "None"
 };
